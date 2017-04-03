@@ -21,6 +21,9 @@ License: [Apache 2.0](LICENSE.txt)
 # Development
 
 ## Terminology
+
+| Term     | Description                                           |
+| -------- | ----------------------------------------------------- |
 | Category | A grouping of unit tests (via MMK_UNIT_TEST_CATEGORY) |
 | Test     | An individual MMK_UNIT_TEST test / entry point        |
 | Check    | An individual ASSERT_X or REQUIRE_X macro invokation. |
