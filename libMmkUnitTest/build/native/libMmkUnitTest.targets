@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!-- By naming this exactly build/native/{ProjectName}.targets, this will be auto-referenced by projects consuming this nuget package. -->
+
+  <PropertyGroup>
+    <!-- Link known binaries -->
+    <MmkUnitTestLink Condition="('$(MmkUnitTestLink)'=='') And ('$(PlatformToolset)'    =='v140'     ) And ('$(Platform)'=='Win32'             )">LinkWindowsX86v140</MmkUnitTestLink>
+    <MmkUnitTestLink Condition="('$(MmkUnitTestLink)'=='') And ('$(PlatformToolset)'    =='v140'     ) And ('$(Platform)'=='x64'               )">LinkWindowsX64v140</MmkUnitTestLink>
+    <MmkUnitTestLink Condition="('$(MmkUnitTestLink)'=='') And ('$(PlatformToolset)'    =='Clang_3_6') And ('$(Platform)'=='ARM'               )">LinkMsAndroidArmClang36</MmkUnitTestLink>
+    <MmkUnitTestLink Condition="('$(MmkUnitTestLink)'=='') And ('$(NdkToolchainVersion)'=='gcc-4.9'  ) And ('$(Platform)'=='ARM-Android-NVIDIA')">LinkNvAndroidArmGcc49</MmkUnitTestLink>
+
+    <MmkUnitTestLink Condition="('$(MmkUnitTestLink)'=='')                                                                                      ">Src</MmkUnitTestLink>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <MmkUnitTestConfig Condition="('$(MmkUnitTestConfig)'=='') And ('$(Configuration)'=='Debug'  )">Debug</MmkUnitTestConfig>
+    <MmkUnitTestConfig Condition="('$(MmkUnitTestConfig)'=='') And ('$(Configuration)'=='Release')">Release</MmkUnitTestConfig>
+    <MmkUnitTestConfig Condition="('$(MmkUnitTestConfig)'=='')                                    ">Release</MmkUnitTestConfig><!-- We only provide Debug/Release libs, fallback on src for other platforms -->
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PropertyPageSchema Include="$(MSBuildThisFileDirectory)\libMmkUnitTest-propertiesui.xml" />
+  </ItemGroup>
+
+  <!-- Add source via indirect MmkUnitTestSrc tags to hide from Solution Explorer -->
+  <ItemGroup>
+    <MmkUnitTestSrc Include="$(MSBuildThisFileDirectory)..\..\src\**\*.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="@(MmkUnitTestSrc)">
+      <ExcludedFromBuild Condition="'$(MmkUnitTestLink)'!='Src'">true</ExcludedFromBuild>
+      <ObjectFileName>$(IntDir)libMmkUnitTest_%(filename).o</ObjectFileName>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+  </ItemGroup>
+
+  <!-- Build settings -->
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(MSBuildThisFileDirectory)..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>HAS_MMK_UNIT_TEST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(MmkUnitTestLink)'=='LinkWindowsX86v140'">
+    <Link>
+      <AdditionalLibraryDirectories>$(MSBuildThisFileDirectory)lib\x86\v140\$(MmkUnitTestConfig);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libMmkUnitTest.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <Lib>
+      <AdditionalLibraryDirectories>$(MSBuildThisFileDirectory)lib\x86\v140\$(MmkUnitTestConfig);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libMmkUnitTest.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(MmkUnitTestLink)'=='LinkWindowsX64v140'">
+    <Link>
+      <AdditionalLibraryDirectories>$(MSBuildThisFileDirectory)lib\x64\v140\$(MmkUnitTestConfig);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libMmkUnitTest.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <Lib>
+      <AdditionalLibraryDirectories>$(MSBuildThisFileDirectory)lib\x64\v140\$(MmkUnitTestConfig);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libMmkUnitTest.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(MmkUnitTestLink)'=='LinkMsAndroidArmClang36'">
+    <Link>
+      <AdditionalLibraryDirectories>$(MSBuildThisFileDirectory)lib\ARM\Clang_3_6\$(MmkUnitTestConfig);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>-lMmkUnitTest;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <Lib>
+      <AdditionalLibraryDirectories>$(MSBuildThisFileDirectory)lib\ARM\Clang_3_6\$(MmkUnitTestConfig);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>-lMmkUnitTest;%(AdditionalDependencies)</AdditionalDependencies>
+    </Lib>
+  </ItemDefinitionGroup>
+<!--
+  <ItemDefinitionGroup Condition="'$(MmkUnitTestLink)'=='LinkNvAndroidArmGcc49'">
+    <Link>
+      <AdditionalLibraryDirectories>$(MSBuildThisFileDirectory)lib\armeabi-v7a\gcc-4.9\$(MmkUnitTestConfig);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>MmkUnitTest;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <Lib>
+      <AdditionalLibraryDirectories>$(MSBuildThisFileDirectory)lib\armeabi-v7a\gcc-4.9\$(MmkUnitTestConfig);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>MmkUnitTest;%(AdditionalDependencies)</AdditionalDependencies>
+    </Lib>
+  </ItemDefinitionGroup>
+-->
+</Project>

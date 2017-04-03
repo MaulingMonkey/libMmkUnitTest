@@ -1,0 +1,78 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libMmkUnitTest", "libMmkUnitTest\libMmkUnitTest.vcxproj", "{5FD281D2-5C91-439C-A212-19C3F8F22BA5}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "exampleTests", "exampleTests\exampleTests.vcxproj", "{5F6177AB-A86D-4F20-B484-E2F87DAFFA05}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{352DCEA5-12DB-437E-8E6B-92AB70B99AB6}"
+	ProjectSection(SolutionItems) = preProject
+		LICENSE.txt = LICENSE.txt
+		Readme.md = Readme.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Configuration", "Configuration", "{2230E956-323F-4B6D-9DAA-85575E51016B}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		libMmkUnitTest.nuspec = libMmkUnitTest.nuspec
+		Makefile = Makefile
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{EEE61DD3-C86A-4CCB-9087-94EC3314477E}"
+	ProjectSection(SolutionItems) = preProject
+		Scripts\Cleanup.cmd = Scripts\Cleanup.cmd
+	EndProjectSection
+EndProject
+Project("{39E2626F-3545-4960-A6E8-258AD8476CE5}") = "exampleTestsAndroidMs", "exampleTests\exampleTestsAndroidMs.androidproj", "{022CF96B-6DA2-4737-9C93-0E12DFE5F223}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|ARM = Debug|ARM
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|ARM = Release|ARM
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5FD281D2-5C91-439C-A212-19C3F8F22BA5}.Debug|ARM.ActiveCfg = Debug|ARM
+		{5FD281D2-5C91-439C-A212-19C3F8F22BA5}.Debug|ARM.Build.0 = Debug|ARM
+		{5FD281D2-5C91-439C-A212-19C3F8F22BA5}.Debug|x64.ActiveCfg = Debug|x64
+		{5FD281D2-5C91-439C-A212-19C3F8F22BA5}.Debug|x64.Build.0 = Debug|x64
+		{5FD281D2-5C91-439C-A212-19C3F8F22BA5}.Debug|x86.ActiveCfg = Debug|Win32
+		{5FD281D2-5C91-439C-A212-19C3F8F22BA5}.Debug|x86.Build.0 = Debug|Win32
+		{5FD281D2-5C91-439C-A212-19C3F8F22BA5}.Release|ARM.ActiveCfg = Release|ARM
+		{5FD281D2-5C91-439C-A212-19C3F8F22BA5}.Release|ARM.Build.0 = Release|ARM
+		{5FD281D2-5C91-439C-A212-19C3F8F22BA5}.Release|x64.ActiveCfg = Release|x64
+		{5FD281D2-5C91-439C-A212-19C3F8F22BA5}.Release|x64.Build.0 = Release|x64
+		{5FD281D2-5C91-439C-A212-19C3F8F22BA5}.Release|x86.ActiveCfg = Release|Win32
+		{5FD281D2-5C91-439C-A212-19C3F8F22BA5}.Release|x86.Build.0 = Release|Win32
+		{5F6177AB-A86D-4F20-B484-E2F87DAFFA05}.Debug|ARM.ActiveCfg = Debug|ARM
+		{5F6177AB-A86D-4F20-B484-E2F87DAFFA05}.Debug|ARM.Build.0 = Debug|ARM
+		{5F6177AB-A86D-4F20-B484-E2F87DAFFA05}.Debug|x64.ActiveCfg = Debug|x64
+		{5F6177AB-A86D-4F20-B484-E2F87DAFFA05}.Debug|x64.Build.0 = Debug|x64
+		{5F6177AB-A86D-4F20-B484-E2F87DAFFA05}.Debug|x86.ActiveCfg = Debug|Win32
+		{5F6177AB-A86D-4F20-B484-E2F87DAFFA05}.Debug|x86.Build.0 = Debug|Win32
+		{5F6177AB-A86D-4F20-B484-E2F87DAFFA05}.Release|ARM.ActiveCfg = Release|ARM
+		{5F6177AB-A86D-4F20-B484-E2F87DAFFA05}.Release|ARM.Build.0 = Release|ARM
+		{5F6177AB-A86D-4F20-B484-E2F87DAFFA05}.Release|x64.ActiveCfg = Release|x64
+		{5F6177AB-A86D-4F20-B484-E2F87DAFFA05}.Release|x64.Build.0 = Release|x64
+		{5F6177AB-A86D-4F20-B484-E2F87DAFFA05}.Release|x86.ActiveCfg = Release|Win32
+		{5F6177AB-A86D-4F20-B484-E2F87DAFFA05}.Release|x86.Build.0 = Release|Win32
+		{022CF96B-6DA2-4737-9C93-0E12DFE5F223}.Debug|ARM.ActiveCfg = Debug|ARM
+		{022CF96B-6DA2-4737-9C93-0E12DFE5F223}.Debug|ARM.Build.0 = Debug|ARM
+		{022CF96B-6DA2-4737-9C93-0E12DFE5F223}.Debug|ARM.Deploy.0 = Debug|ARM
+		{022CF96B-6DA2-4737-9C93-0E12DFE5F223}.Debug|x64.ActiveCfg = Debug|x64
+		{022CF96B-6DA2-4737-9C93-0E12DFE5F223}.Debug|x86.ActiveCfg = Debug|x86
+		{022CF96B-6DA2-4737-9C93-0E12DFE5F223}.Release|ARM.ActiveCfg = Release|ARM
+		{022CF96B-6DA2-4737-9C93-0E12DFE5F223}.Release|ARM.Build.0 = Release|ARM
+		{022CF96B-6DA2-4737-9C93-0E12DFE5F223}.Release|ARM.Deploy.0 = Release|ARM
+		{022CF96B-6DA2-4737-9C93-0E12DFE5F223}.Release|x64.ActiveCfg = Release|x64
+		{022CF96B-6DA2-4737-9C93-0E12DFE5F223}.Release|x86.ActiveCfg = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

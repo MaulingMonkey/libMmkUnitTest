@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="include/mmk/test">
+      <UniqueIdentifier>{b8b5f612-49ec-40c7-bdda-962a0dcf80c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="%28Build Configuration%29">
+      <UniqueIdentifier>{c3935e7f-8183-4005-a528-d569c264264a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="build/native">
+      <UniqueIdentifier>{46f39da0-5d69-42b6-8f2a-d5f9cdf4c420}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{350b405c-b67d-4ee1-860d-8ef0fb0398ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include/mmk/test\unit">
+      <UniqueIdentifier>{12b11379-2175-4929-9575-1f3ded7c60ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include/mmk/test\unit\%28listeners%29">
+      <UniqueIdentifier>{6f005ed3-b509-4f24-8d21-9973ade2ffd0}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\mmk\test\unit.hpp">
+      <Filter>include/mmk/test</Filter>
+    </ClInclude>
+    <ClInclude Include="include\mmk\test\unit\settings.hpp">
+      <Filter>include/mmk/test\unit</Filter>
+    </ClInclude>
+    <ClInclude Include="include\mmk\test\unit\run.hpp">
+      <Filter>include/mmk/test\unit</Filter>
+    </ClInclude>
+    <ClInclude Include="include\mmk\test\unit\writeAdbLog.hpp">
+      <Filter>include/mmk/test\unit\%28listeners%29</Filter>
+    </ClInclude>
+    <ClInclude Include="include\mmk\test\unit\writeStdout.hpp">
+      <Filter>include/mmk/test\unit\%28listeners%29</Filter>
+    </ClInclude>
+    <ClInclude Include="include\mmk\test\unit\writeWinCon.hpp">
+      <Filter>include/mmk/test\unit\%28listeners%29</Filter>
+    </ClInclude>
+    <ClInclude Include="include\mmk\test\unit\listener.hpp">
+      <Filter>include/mmk/test\unit\%28listeners%29</Filter>
+    </ClInclude>
+    <ClInclude Include="include\mmk\test\unit\listeners.hpp">
+      <Filter>include/mmk/test\unit\%28listeners%29</Filter>
+    </ClInclude>
+    <ClInclude Include="include\mmk\test\unit\checkResult.hpp">
+      <Filter>include/mmk/test\unit</Filter>
+    </ClInclude>
+    <ClInclude Include="include\mmk\test\unit\testDescription.hpp">
+      <Filter>include/mmk/test\unit</Filter>
+    </ClInclude>
+    <ClInclude Include="include\mmk\test\unit\checks.hpp">
+      <Filter>include/mmk/test\unit</Filter>
+    </ClInclude>
+    <ClInclude Include="include\mmk\test\unit\writeExitCode.hpp">
+      <Filter>include/mmk/test\unit\%28listeners%29</Filter>
+    </ClInclude>
+    <ClInclude Include="src\testList.hpp">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="include\mmk\test\unit\tests.hpp">
+      <Filter>include/mmk/test\unit</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="build\native\libMmkUnitTest.targets">
+      <Filter>build/native</Filter>
+    </None>
+    <None Include="libMmkUnitTest-Android.props">
+      <Filter>%28Build Configuration%29</Filter>
+    </None>
+    <None Include="libMmkUnitTest-MSVC.props">
+      <Filter>%28Build Configuration%29</Filter>
+    </None>
+    <None Include="libMmkUnitTest-nVidiaCodeWorks.props">
+      <Filter>%28Build Configuration%29</Filter>
+    </None>
+    <None Include="build\native\libMmkUnitTest-propertiesui.xml">
+      <Filter>build/native</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\unit.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\run.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\testList.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ProjectSchemaDefinitions xmlns="clr-namespace:Microsoft.Build.Framework.XamlTypes;assembly=Microsoft.Build.Framework">
+  <Rule Name="ReferencedPackages_libMmkUnitTest" PageTemplate="tool" DisplayName="Referenced Packages" SwitchPrefix="/" Order="1">
+    <Rule.Categories>
+      <Category Name="libMmkUnitTest" DisplayName="libMmkUnitTest" />
+    </Rule.Categories>
+    <Rule.DataSource>
+      <DataSource Persistence="ProjectFile" ItemType="" HasConfigurationCondition="true" />
+    </Rule.DataSource>
+    <EnumProperty Name="MmkUnitTestConfig" DisplayName="Library Configuration" Description="Which libMmkUnitTest library configuration variant to link against (if linking)" Category="libMmkUnitTest">
+      <EnumValue Name="Debug"                      DisplayName="Debug (unoptimized)" />
+      <EnumValue Name="Release"                    DisplayName="Release (optimized)" />
+    </EnumProperty>
+    <EnumProperty Name="MmkUnitTestLink" DisplayName="Library Platform" Description="Which libMmkUnitTest library platform/architecture to link or build, if any." Category="libMmkUnitTest">
+      <EnumValue Name="LinkMsAndroidArmClang36"    DisplayName="Link Android ARM (Clang 3.6)"          Description="Link against Android ARM libs (built with Clang 3.6 via Microsoft's Android SDK.)" />
+  <!--<EnumValue Name="LinkNvAndroidArmGcc49"      DisplayName="Link Android ARM (GCC 4.9, nVidia)"    Description="Link against Android ARM libs (built with GCC 4.9   via nVidia CodeWorks.)" />-->
+      <EnumValue Name="LinkWindowsX86v140"         DisplayName="Link Windows x86 (v140)"               Description="Link against Windows x86 libs (built with v140 / VS2015)" />
+      <EnumValue Name="LinkWindowsX64v140"         DisplayName="Link Windows x64 (v140)"               Description="Link against Windows x64 libs (built with v140 / VS2015)" />
+      <EnumValue Name="Src"                        DisplayName="Source"                                Description="Reference &amp; build source code in project instead of linking directly." />
+      <EnumValue Name="None"                       DisplayName="Don't Link"                            Description="Don't build or link against libMmkUnitTest at all." />
+    </EnumProperty>
+  </Rule>
+</ProjectSchemaDefinitions>
