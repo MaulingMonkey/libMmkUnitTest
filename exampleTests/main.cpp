@@ -16,26 +16,60 @@
 #include <mmk/test/unit.hpp>
 #include "writeActivity.hpp"
 
+bool gBug = false;
+
 UNIT_TEST_CATEGORY("Assertions")
 {
 	UNIT_TEST("Basic")
 	{
+		const bool bug = gBug;
+		gBug = true; // Bug unless we reach the end of this function.
+
 		ASSERT(true);
 		ASSERT(false);
 		ASSERT_MSG(true, "Message");
 		ASSERT_MSG(false, "Message");
 		ASSERT_FMT(true, "Format: %d", 42);
 		ASSERT_FMT(false, "Format: %d", 42);
+
+		gBug = bug;
 	}
 
 	UNIT_TEST("Comparison")
 	{
+		const bool bug = gBug;
+		gBug = true; // Bug unless we reach the end of this function.
+
 		ASSERT_CMP(1,<,2);
 		ASSERT_CMP(1,>=,2);
 		ASSERT_CMP_MSG(1,<,2, "Message");
 		ASSERT_CMP_MSG(1,>=,2, "Message");
 		ASSERT_CMP_FMT(1,<,2, "Format: %d", 42);
 		ASSERT_CMP_FMT(1,>=,2, "Format: %d", 42);
+
+		gBug = bug;
+	}
+
+	UNIT_TEST("Use in an expression")
+	{
+		bool bug = gBug;
+		gBug = true; // Bug unless we reach the end of this function
+
+		if (!ASSERT_CMP(1,<,2))                        bug = true;
+		if ( ASSERT_CMP(1,>=,2))                       bug = true;
+		if (!ASSERT_CMP_MSG(1,<,2, "Message"))         bug = true;
+		if ( ASSERT_CMP_MSG(1,>=,2, "Message"))        bug = true;
+		if (!ASSERT_CMP_FMT(1,<,2, "Format: %d", 42))  bug = true;
+		if ( ASSERT_CMP_FMT(1,>=,2, "Format: %d", 42)) bug = true;
+
+		if (!ASSERT_CMP(1,<,2))                        { bug = true; }
+		if ( ASSERT_CMP(1,>=,2))                       { bug = true; }
+		if (!ASSERT_CMP_MSG(1,<,2, "Message"))         { bug = true; }
+		if ( ASSERT_CMP_MSG(1,>=,2, "Message"))        { bug = true; }
+		if (!ASSERT_CMP_FMT(1,<,2, "Format: %d", 42))  { bug = true; }
+		if ( ASSERT_CMP_FMT(1,>=,2, "Format: %d", 42)) { bug = true; }
+
+		gBug = bug;
 	}
 }
 
@@ -43,23 +77,52 @@ UNIT_TEST_CATEGORY("Requires")
 {
 	UNIT_TEST("Basic")
 	{
-		REQUIRE(true);
-		REQUIRE(false);
-		REQUIRE_MSG(true, "Message");
-		REQUIRE_MSG(false, "Message");
-		REQUIRE_FMT(true, "Format: %d", 42);
-		REQUIRE_FMT(false, "Format: %d", 42);
+		const bool bug = gBug; gBug = true; // Bug unless we pass the first REQUIRE...
+		REQUIRE(true);  gBug = bug;         // We passed the first REQUIRE...
+		REQUIRE(false); gBug = true;        // Bug if we reach the end of this function.
+	}
+
+	UNIT_TEST("Basic (MSG)")
+	{
+		const bool bug = gBug; gBug = true;         // Bug unless we pass the first REQUIRE...
+		REQUIRE_MSG(true, "Message");  gBug = bug;  // We passed the first REQUIRE...
+		REQUIRE_MSG(false, "Message"); gBug = true; // Bug if we reach the end of this function.
+	}
+
+	UNIT_TEST("Basic (FMT)")
+	{
+		const bool bug = gBug; gBug = true;                // Bug unless we pass the first REQUIRE...
+		REQUIRE_FMT(true, "Format: %d", 42);  gBug = bug;  // We passed the first REQUIRE...
+		REQUIRE_FMT(false, "Format: %d", 42); gBug = true; // Bug if we reach the end of this function.
 	}
 
 	UNIT_TEST("Comparison")
 	{
-		REQUIRE_CMP(1,<,2);
-		REQUIRE_CMP(1,>=,2);
-		REQUIRE_CMP_MSG(1,<,2, "Message");
-		REQUIRE_CMP_MSG(1,>=,2, "Message");
-		REQUIRE_CMP_FMT(1,<,2, "Format: %d", 42);
-		REQUIRE_CMP_FMT(1,>=,2, "Format: %d", 42);
-		//REQUIRE_CMP_FMT(1,>=,2, "Format: %s", 42); // Trigger bug
+		const bool bug = gBug; gBug = true; // Bug unless we pass the first REQUIRE...
+		REQUIRE_CMP(1,<,2);  gBug = bug;    // We passed the first REQUIRE...
+		REQUIRE_CMP(1,>=,2); gBug = true;   // Bug if we reach the end of this function.
+	}
+
+	UNIT_TEST("Basic (MSG)")
+	{
+		const bool bug = gBug; gBug = true;              // Bug unless we pass the first REQUIRE...
+		REQUIRE_CMP_MSG(1,<,2, "Message");  gBug = bug;  // We passed the first REQUIRE...
+		REQUIRE_CMP_MSG(1,>=,2, "Message"); gBug = true; // Bug if we reach the end of this function.
+	}
+
+	UNIT_TEST("Basic (MSG)")
+	{
+		const bool bug = gBug; gBug = true;                     // Bug unless we pass the first REQUIRE...
+		REQUIRE_CMP_FMT(1,<,2, "Format: %d", 42);  gBug = bug;  // We passed the first REQUIRE...
+		REQUIRE_CMP_FMT(1,>=,2, "Format: %d", 42); gBug = true; // Bug if we reach the end of this function.
+	}
+}
+
+UNIT_TEST_CATEGORY("Compile time only")
+{
+	UNIT_TEST("Compile time")
+	{
+		//REQUIRE_CMP_FMT(1,>=,2, "Format: %s", 42); // Trigger formatting compile error
 	}
 }
 
@@ -75,7 +138,8 @@ extern "C" JNIEXPORT void JNICALL Java_com_exampleTestsAndroid_exampleTestsAndro
 
 #else
 int main(int argc, char** argv) {
-	return mmk::test::unit::run(argc, argv) == 0 ? 1 : 0; // Invert error condition - we have several failing tests above, intentionally.
+	if (mmk::test::unit::run(argc, argv) == 0) gBug = true; // Tests should've returned an error code
+	return gBug ? 1 : 0;
 }
 
 #endif
