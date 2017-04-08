@@ -53,9 +53,9 @@
   <ItemGroup>
     <None Include="build\native\libMmkUnitTest-propertiesui.xml" />
     <None Include="build\native\libMmkUnitTest.targets" />
-    <None Include="libMmkUnitTest-Android.props" />
-    <None Include="libMmkUnitTest-MSVC.props" />
-    <None Include="libMmkUnitTest-nVidiaCodeWorks.props" />
+    <None Include="libMmkUnitTest-MsAndroid.props" />
+    <None Include="libMmkUnitTest-NvAndroid.props" />
+    <None Include="libMmkUnitTest-Windows.props" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\run.cpp" />
@@ -126,35 +126,35 @@
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="libMmkUnitTest-MSVC.props" />
+    <Import Project="libMmkUnitTest-Windows.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="libMmkUnitTest-MSVC.props" />
+    <Import Project="libMmkUnitTest-Windows.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="libMmkUnitTest-MSVC.props" />
+    <Import Project="libMmkUnitTest-Windows.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="libMmkUnitTest-MSVC.props" />
+    <Import Project="libMmkUnitTest-Windows.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|ARM-Android-NVIDIA'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="libMmkUnitTest-nVidiaCodeWorks.props" />
+    <Import Project="libMmkUnitTest-NvAndroid.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|ARM-Android-NVIDIA'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="libMmkUnitTest-nVidiaCodeWorks.props" />
+    <Import Project="libMmkUnitTest-NvAndroid.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="libMmkUnitTest-Android.props" />
+    <Import Project="libMmkUnitTest-MsAndroid.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="libMmkUnitTest-Android.props" />
+    <Import Project="libMmkUnitTest-MsAndroid.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">

@@ -68,17 +68,17 @@
     <None Include="build\native\libMmkUnitTest.targets">
       <Filter>build/native</Filter>
     </None>
-    <None Include="libMmkUnitTest-Android.props">
-      <Filter>%28Build Configuration%29</Filter>
-    </None>
-    <None Include="libMmkUnitTest-MSVC.props">
-      <Filter>%28Build Configuration%29</Filter>
-    </None>
-    <None Include="libMmkUnitTest-nVidiaCodeWorks.props">
-      <Filter>%28Build Configuration%29</Filter>
-    </None>
     <None Include="build\native\libMmkUnitTest-propertiesui.xml">
       <Filter>build/native</Filter>
+    </None>
+    <None Include="libMmkUnitTest-MsAndroid.props">
+      <Filter>%28Build Configuration%29</Filter>
+    </None>
+    <None Include="libMmkUnitTest-NvAndroid.props">
+      <Filter>%28Build Configuration%29</Filter>
+    </None>
+    <None Include="libMmkUnitTest-Windows.props">
+      <Filter>%28Build Configuration%29</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

@@ -5,6 +5,9 @@
     <ClCompile Include="@(MmkUnitTestSrc)" />
     <ClCompile Include="@(MmkUnitTestSrc)" />
     <ClCompile Include="@(MmkUnitTestSrc)" />
+    <ClCompile Include="@(MmkUnitTestSrc)" />
+    <ClCompile Include="@(MmkUnitTestSrc)" />
+    <ClCompile Include="@(MmkUnitTestSrc)" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="%28Build Configuration%29">
@@ -13,13 +16,13 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\libMmkUnitTest\build\native\libMmkUnitTest.props" />
-    <None Include="exampleTests-Android.props">
+    <None Include="exampleTests-MsAndroid.props">
       <Filter>%28Build Configuration%29</Filter>
     </None>
-    <None Include="exampleTests-MSVC.props">
+    <None Include="exampleTests-NvAndroid.props">
       <Filter>%28Build Configuration%29</Filter>
     </None>
-    <None Include="exampleTests-nVidiaCodeWorks.props">
+    <None Include="exampleTests-Windows.props">
       <Filter>%28Build Configuration%29</Filter>
     </None>
   </ItemGroup>
