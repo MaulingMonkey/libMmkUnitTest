@@ -13,18 +13,13 @@
    limitations under the License.
 */
 
-#ifndef ZMMK_TEST_UNIT_WRITE_STDOUT_HPP
-#define ZMMK_TEST_UNIT_WRITE_STDOUT_HPP
-
-#include "listener.hpp"
+#include <mmk/test/unit/writeStdout.hpp>
+#include <mmk/test/unit/testDescription.hpp>
+#include <cstdio>
 
 namespace mmk { namespace test { namespace unit {
-	struct writeStdout : listener {
-		void onBeginCategory(const categoryEvent& event) override;
-		void onEndCategory  (const categoryEvent&      ) override;
-		void onBeginTest    (const testEvent&     event) override;
-		void onEndCheck     (const checkEvent&    event) override;
-	};
+	void writeStdout::onBeginCategory(const categoryEvent& event) { printf("%s\n", event.category ? event.category : "(no category)"); }
+	void writeStdout::onEndCategory  (const categoryEvent&      ) { printf("\n"); }
+	void writeStdout::onBeginTest    (const testEvent&     event) { if (event.test->title) printf("  - %s\n", event.test->title); }
+	void writeStdout::onEndCheck     (const checkEvent&    event) { printf("    [%s] %s\n", event.result == checkResultPass ? "pass" :  event.result == checkResultFail ? "FAIL" : "... ", event.message ? event.message : ""); }
 }}} // namespace mmk::test::unit
-
-#endif /* ndef ZMMK_TEST_UNIT_WRITE_STDOUT_HPP */

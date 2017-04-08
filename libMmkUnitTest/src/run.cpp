@@ -23,6 +23,7 @@
 #include <windows.h>
 #endif
 #include <cassert>
+#include <cstdio>
 
 namespace mmk { namespace test { namespace unit {
 	settings* reportSettings;

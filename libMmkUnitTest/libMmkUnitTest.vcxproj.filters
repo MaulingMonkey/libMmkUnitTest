@@ -19,6 +19,9 @@
     <Filter Include="include/mmk/test\unit\%28listeners%29">
       <UniqueIdentifier>{6f005ed3-b509-4f24-8d21-9973ade2ffd0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\%28listeners%29">
+      <UniqueIdentifier>{bae9f175-a497-401b-879a-63da78e0d051}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\mmk\test\unit.hpp">
@@ -90,6 +93,15 @@
     </ClCompile>
     <ClCompile Include="src\testList.cpp">
       <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\writeAdbLog.cpp">
+      <Filter>src\%28listeners%29</Filter>
+    </ClCompile>
+    <ClCompile Include="src\writeStdout.cpp">
+      <Filter>src\%28listeners%29</Filter>
+    </ClCompile>
+    <ClCompile Include="src\writeWinCon.cpp">
+      <Filter>src\%28listeners%29</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

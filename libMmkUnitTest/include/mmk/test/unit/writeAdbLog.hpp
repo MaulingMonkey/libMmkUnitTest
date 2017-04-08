@@ -18,8 +18,6 @@
 #ifdef __ANDROID__
 
 #include "listener.hpp"
-#include "testDescription.hpp"
-#include <android/log.h>
 
 namespace mmk { namespace test { namespace unit {
 	class writeAdbLog : public listener {
@@ -30,19 +28,13 @@ namespace mmk { namespace test { namespace unit {
 		writeAdbLog():                tag("libMmkUnitTest")             {}
 		writeAdbLog(const char* tag): tag(tag ? tag : "libMmkUnitTest") {}
 
-		void onBeginCategory(const categoryEvent& event) override { __android_log_print(ANDROID_LOG_DEBUG, tag, "%s", event.category ? event.category : "(no category)"); }
-		void onEndCategory  (const categoryEvent&      ) override { __android_log_print(ANDROID_LOG_DEBUG, tag, ""); }
-		void onBeginTest    (const testEvent&     event) override { __android_log_print(ANDROID_LOG_VERBOSE, tag, "  - %s", !event.test ? "<no test>" : event.test->title ? event.test->title : event.test->id ? event.test->id : "<unknown test>"); }
-		void onEndCheck     (const checkEvent&    event) override { __android_log_print(toPrio(event.result), tag, "    %s", event.message ? event.message : ""); }
+		void onBeginCategory(const categoryEvent& event) override;
+		void onEndCategory  (const categoryEvent&      ) override;
+		void onBeginTest    (const testEvent&     event) override;
+		void onEndCheck     (const checkEvent&    event) override;
 
-		int toPrio(checkResult r) {
-			switch (r) {
-			case checkResultBegin: return ANDROID_LOG_WARN;
-			case checkResultPass:  return ANDROID_LOG_INFO;
-			case checkResultFail:  return ANDROID_LOG_ERROR;
-			}
-			return ANDROID_LOG_WARN;
-		}
+	private:
+		static int toPrio(checkResult r);
 	};
 }}} // namespace mmk::test::unit
 

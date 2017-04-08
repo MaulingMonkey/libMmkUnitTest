@@ -61,6 +61,9 @@
     <ClCompile Include="src\run.cpp" />
     <ClCompile Include="src\testList.cpp" />
     <ClCompile Include="src\unit.cpp" />
+    <ClCompile Include="src\writeAdbLog.cpp" />
+    <ClCompile Include="src\writeStdout.cpp" />
+    <ClCompile Include="src\writeWinCon.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{5FD281D2-5C91-439C-A212-19C3F8F22BA5}</ProjectGuid>

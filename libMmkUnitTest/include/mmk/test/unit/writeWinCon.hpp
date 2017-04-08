@@ -18,8 +18,6 @@
 #ifdef _MSC_VER
 
 #include "listener.hpp"
-#include "testDescription.hpp"
-#include <cstdio>
 #define NOMINMAX
 #include <windows.h>
 
@@ -32,36 +30,14 @@ namespace mmk { namespace test { namespace unit {
 		writeWinCon(HANDLE hConsole): hConsole(hConsole) {}
 		~writeWinCon() {}
 
-		void onBeginCategory(const categoryEvent& event) override {
-			if (!hConsole) return;
-			const WORD header = FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_RED | FOREGROUND_INTENSITY;
-			const WORD body   = FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_RED;
-			SetConsoleTextAttribute(hConsole, header);
-			printf("%s", event.category ? event.category : "(no category)");
-			SetConsoleTextAttribute(hConsole, body);
-			printf("\n");
-		}
-		void onEndCategory(const categoryEvent&       ) override { printf("\n"); }
-		void onBeginTest  (const testEvent&      event) override { printf("  - %s\n", event.test->title ? event.test->title : event.test->id ? event.test->id : "<unknown test>"); }
-		void onBeginCheck (const checkEvent&     event) override { onCheck(event); }
-		void onEndCheck   (const checkEvent&     event) override { onCheck(event); printf("                 \n"); }
+		void onBeginCategory(const categoryEvent& event) override;
+		void onEndCategory  (const categoryEvent&      ) override;
+		void onBeginTest    (const testEvent&     event) override;
+		void onBeginCheck   (const checkEvent&    event) override;
+		void onEndCheck     (const checkEvent&    event) override;
 
-		void onCheck(const checkEvent&     event) {
-			const WORD icon   = (event.result == checkResultPass ? FOREGROUND_GREEN : event.result == checkResultFail ? FOREGROUND_RED : (FOREGROUND_GREEN | FOREGROUND_RED)) | FOREGROUND_INTENSITY;
-			const WORD body   = FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_RED;
-
-			CONSOLE_SCREEN_BUFFER_INFO info = {};
-			if (GetConsoleScreenBufferInfo(hConsole, &info)) {
-				COORD newCoord = {};
-				newCoord.Y = info.dwCursorPosition.Y;
-				SetConsoleCursorPosition(hConsole, newCoord);
-			}
-			printf("    ");
-			SetConsoleTextAttribute(hConsole, icon);
-			printf("%s", event.result == checkResultPass ? "O" : event.result == checkResultFail ? "X" : "?");
-			SetConsoleTextAttribute(hConsole, body);
-			printf(" %s", event.message ? event.message : "");
-		}
+	private:
+		void onCheck(const checkEvent&     event);
 	};
 }}} // namespace mmk::test::unit
 
